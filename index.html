@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MECID | Mengo Educational Community and Inclusive Development</title>
+  <meta name="description" content="Mengo Educational Community and Inclusive Development (MECID) — Inclusive learning, community development, and creating self-reliance in Western Kenya." />
+  <style>
+    :root{
+      --bg:#0b0f1a;
+      --card:#10182b;
+      --ink:#eef2ff;
+      --muted:rgba(238,242,255,.78);
+      --soft:rgba(238,242,255,.12);
+      --soft2:rgba(238,242,255,.08);
+      --accent:#6ee7ff;
+      --accent2:#a78bfa;
+      --ring:rgba(110,231,255,.35);
+      --max:1120px;
+      --radius:22px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(167,139,250,.35), transparent 60%),
+        radial-gradient(900px 450px at 85% 15%, rgba(110,231,255,.25), transparent 55%),
+        radial-gradient(900px 520px at 50% 100%, rgba(110,231,255,.12), transparent 55%),
+        var(--bg);
+      line-height:1.5;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,15,26,.62);
+      border-bottom: 1px solid rgba(238,242,255,.08);
+    }
+    .topbar .inner{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none}
+    .logo{
+      width:44px; height:44px; border-radius:16px;
+      display:grid; place-items:center;
+      border:1px solid rgba(238,242,255,.18);
+      background: linear-gradient(180deg, rgba(110,231,255,.12), rgba(167,139,250,.10));
+      box-shadow: 0 8px 24px rgba(0,0,0,.22);
+      font-weight:800;
+      letter-spacing:.02em;
+    }
+    .brand .name{font-weight:800; font-size:14px; line-height:1.1}
+    .brand .loc{font-size:12px; opacity:.75; display:flex; align-items:center; gap:6px}
+    .nav{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
+    .nav a{
+      font-size:13px; text-decoration:none; opacity:.8;
+      padding:8px 10px; border-radius:12px;
+    }
+    .nav a:hover{opacity:1; background: rgba(238,242,255,.06)}
+    .btnrow{display:flex; gap:10px; align-items:center}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:10px 14px; border-radius:14px;
+      border:1px solid rgba(238,242,255,.16);
+      background: rgba(238,242,255,.06);
+      text-decoration:none; font-weight:700; font-size:13px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.22);
+      cursor:pointer;
+      color:var(--ink);
+    }
+    .btn:hover{border-color:rgba(110,231,255,.35); box-shadow: 0 10px 26px rgba(0,0,0,.28), 0 0 0 4px var(--ring)}
+    .btn.primary{
+      border-color: rgba(110,231,255,.35);
+      background: linear-gradient(180deg, rgba(110,231,255,.18), rgba(167,139,250,.14));
+    }
+    .hero{padding:56px 0 26px}
+    .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      border:1px solid rgba(238,242,255,.14);
+      background: rgba(238,242,255,.06);
+      font-size:13px; font-weight:700; color:rgba(238,242,255,.92);
+    }
+    h1{margin:0; font-size:40px; line-height:1.05; letter-spacing:-.02em}
+    .sub{margin:14px 0 22px; max-width:62ch; color:var(--muted); font-size:16px}
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:22px}
+    .card{
+      background: rgba(16,24,43,.75);
+      border: 1px solid rgba(238,242,255,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .card .pad{padding:18px}
+    .statlabel{font-size:13px; color:var(--muted); font-weight:700}
+    .statvalue{margin-top:6px; font-size:18px; font-weight:900}
+    section{padding:44px 0}
+    .sectionhead{display:flex; justify-content:space-between; align-items:flex-end; gap:18px; margin-bottom:18px}
+    .eyebrow{font-size:12px; letter-spacing:.14em; text-transform:uppercase; opacity:.75; font-weight:800}
+    h2{margin:6px 0 0; font-size:28px; letter-spacing:-.01em}
+    .lead{margin:10px 0 0; color:var(--muted); max-width:70ch}
+    .twocol{display:grid; grid-template-columns: 1.2fr .8fr; gap:16px; align-items:start}
+    .list{margin:0; padding-left:18px; color:rgba(238,242,255,.90)}
+    .list li{margin:8px 0}
+    .chips{display:flex; flex-wrap:wrap; gap:10px}
+    .chip{padding:9px 12px; border-radius:999px; border:1px solid rgba(238,242,255,.14); background: rgba(238,242,255,.06); font-weight:700; font-size:13px}
+    .prog{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:14px}
+    .prog h3{margin:0 0 8px; font-size:16px}
+    .muted{color:var(--muted)}
+    .softline{border-top:1px solid rgba(238,242,255,.10)}
+    .sdggrid{display:grid; grid-template-columns: repeat(7, minmax(0,1fr)); gap:10px; margin-top:14px}
+    .sdg{
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      padding:12px 10px; border-radius:18px;
+      border:1px solid rgba(238,242,255,.12); background: rgba(238,242,255,.05);
+      text-align:center;
+    }
+    .sdg b{font-size:16px}
+    .sdg span{font-size:11px; opacity:.75; margin-top:3px}
+    .partnergrid{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:14px}
+    .partner{padding:14px 14px; border-radius:18px; border:1px solid rgba(238,242,255,.12); background: rgba(238,242,255,.05); font-weight:800}
+    .contactgrid{display:grid; grid-template-columns: 1fr 1fr; gap:14px; align-items:start}
+    .field{display:flex; flex-direction:column; gap:6px; margin:10px 0}
+    label{font-size:12px; opacity:.78; font-weight:800; letter-spacing:.04em; text-transform:uppercase}
+    input, textarea{
+      border-radius:14px;
+      border:1px solid rgba(238,242,255,.14);
+      background: rgba(238,242,255,.06);
+      padding:12px 12px;
+      color:var(--ink);
+      outline:none;
+      font-size:14px;
+    }
+    input:focus, textarea:focus{box-shadow: 0 0 0 4px var(--ring); border-color: rgba(110,231,255,.35)}
+    textarea{min-height:120px; resize:vertical}
+    .note{font-size:12px; color:var(--muted)}
+    footer{padding:26px 0 40px; color:var(--muted)}
+    .footerrow{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+    .small{font-size:12px}
+    .hide-sm{display:inline-flex}
+    .menu{display:none}
+    @media (max-width: 920px){
+      .grid3{grid-template-columns:1fr; }
+      .twocol{grid-template-columns:1fr}
+      .prog{grid-template-columns:1fr}
+      .sdggrid{grid-template-columns: repeat(4, minmax(0,1fr))}
+      .partnergrid{grid-template-columns:1fr}
+      .contactgrid{grid-template-columns:1fr}
+      h1{font-size:34px}
+      .hide-sm{display:none}
+      .menu{display:inline-flex}
+      .nav{display:none}
+      .nav.open{display:flex; flex-direction:column; align-items:flex-start; padding:0 0 14px}
+      .topbar .inner{align-items:flex-start}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="inner">
+        <a class="brand" href="#top" aria-label="MECID home">
+          <div class="logo">MECID</div>
+          <div>
+            <div class="name">Mengo Educational Community<br/>and Inclusive Development</div>
+            <div class="loc">📍 Western Kenya</div>
+          </div>
+        </a>
+
+        <div class="btnrow">
+          <a class="btn primary hide-sm" href="#partner">Partner with us</a>
+          <a class="btn hide-sm" href="#contact">Contact</a>
+          <button class="btn menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+        </div>
+      </div>
+
+      <nav class="nav" id="nav">
+        <a href="#about">About</a>
+        <a href="#focus">Focus</a>
+        <a href="#programmes">Programmes</a>
+        <a href="#impact">Impact</a>
+        <a href="#sdgs">SDGs</a>
+        <a href="#partner">Partner</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="pillrow">
+          <span class="pill">♿ Disability-inclusive</span>
+          <span class="pill">🤝 Community-led</span>
+          <span class="pill">🛡️ Protection & support</span>
+        </div>
+
+        <h1>Inclusive Learning.<br/>Community Development.<br/>Creating Self‑Reliance.</h1>
+        <p class="sub">
+          MECID is a community-driven, not-for-profit organisation based in <b>Western Kenya</b>,
+          empowering persons with disabilities and vulnerable groups through inclusive education,
+          practical skills, and community protection.
+        </p>
+
+        <div class="btnrow" style="margin-top:10px; flex-wrap:wrap">
+          <a class="btn primary" href="#programmes">Explore programmes</a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+
+        <div class="grid3">
+          <div class="card"><div class="pad">
+            <div class="statlabel">Primary focus</div>
+            <div class="statvalue">Disability inclusion</div>
+          </div></div>
+          <div class="card"><div class="pad">
+            <div class="statlabel">Core outcome</div>
+            <div class="statvalue">Self‑reliance</div>
+          </div></div>
+          <div class="card"><div class="pad">
+            <div class="statlabel">Protection</div>
+            <div class="statvalue">SGBV support & referrals</div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="softline">
+      <div class="wrap">
+        <div class="sectionhead">
+          <div>
+            <div class="eyebrow">About</div>
+            <h2>Who we are</h2>
+            <p class="lead">
+              Communities face disability exclusion, limited access to education, unemployment, and inadequate psychosocial support.
+              MECID responds by strengthening skills, opportunities, and community systems that protect and include everyone.
+            </p>
+          </div>
+        </div>
+
+        <div class="twocol">
+          <div class="card"><div class="pad">
+            <h3 style="margin:0 0 8px">Our mission</h3>
+            <p class="muted" style="margin:0">
+              To promote inclusive education, social empowerment, and sustainable livelihoods for vulnerable individuals and families.
+            </p>
+
+            <div style="height:12px"></div>
+            <h3 style="margin:0 0 8px">Who we serve</h3>
+            <ul class="list">
+              <li>Persons with disabilities (especially out-of-school youth)</li>
+              <li>Mothers and caregivers of children with disabilities</li>
+              <li>Young mothers</li>
+              <li>Survivors and individuals at risk of SGBV</li>
+            </ul>
+          </div></div>
+
+          <div class="card"><div class="pad">
+            <h3 style="margin:0 0 8px">Where we work</h3>
+            <p class="muted" style="margin:0">
+              <b>Western Kenya</b><br/>
+              <span style="opacity:.85">Add counties/sub-counties/communities here.</span>
+            </p>
+            <div style="height:12px"></div>
+            <h3 style="margin:0 0 8px">Quick highlights</h3>
+            <div class="chips">
+              <span class="chip">Inclusive learning</span>
+              <span class="chip">Skills training</span>
+              <span class="chip">Entrepreneurship</span>
+              <span class="chip">SGBV response</span>
+              <span class="chip">Community data</span>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="focus">
+      <div class="wrap">
+        <div class="sectionhead">
+          <div>
+            <div class="eyebrow">Our focus</div>
+            <h2>Empowerment through inclusion</h2>
+            <p class="lead">
+              Empowering persons with disabilities and vulnerable community members to become self‑reliant and economically independent.
+            </p>
+          </div>
+        </div>
+
+        <div class="chips">
+          <span class="chip">Skills for self‑reliance</span>
+          <span class="chip">Disability inclusion</span>
+          <span class="chip">Economic empowerment</span>
+          <span class="chip">Gender-responsive support</span>
+          <span class="chip">Community-led solutions</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="programmes" class="softline">
+      <div class="wrap">
+        <div class="sectionhead">
+          <div>
+            <div class="eyebrow">Programmes</div>
+            <h2>What we do</h2>
+            <p class="lead">Three integrated pillars that strengthen learning, livelihoods, and protection.</p>
+          </div>
+        </div>
+
+        <div class="prog">
+          <div class="card"><div class="pad">
+            <h3>📚 Inclusive Learning</h3>
+            <ul class="list">
+              <li>Functional literacy & basic education</li>
+              <li>Life skills and self-care competencies</li>
+              <li>Community-based learning opportunities</li>
+            </ul>
+          </div></div>
+
+          <div class="card"><div class="pad">
+            <h3>💼 Livelihoods & Self‑Reliance</h3>
+            <ul class="list">
+              <li>Vocational training and mentorship</li>
+              <li>Entrepreneurship & small business support</li>
+              <li>Income-generating activities (IGAs)</li>
+            </ul>
+          </div></div>
+
+          <div class="card"><div class="pad">
+            <h3>🛡️ Protection & Support</h3>
+            <ul class="list">
+              <li>SGBV awareness, prevention & referrals</li>
+              <li>Psychosocial support and safeguarding</li>
+              <li>Community capacity strengthening</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="card" style="margin-top:14px"><div class="pad">
+          <h3 style="margin:0 0 10px">Skills areas (examples)</h3>
+          <div class="chips">
+            <span class="chip">Art & crafts (beadwork, knitting, handicrafts)</span>
+            <span class="chip">Baking & food processing</span>
+            <span class="chip">Agricultural skills</span>
+            <span class="chip">Soap making</span>
+            <span class="chip">Hairdressing & beauty services</span>
+            <span class="chip">GO‑Biz / entrepreneurship training</span>
+          </div>
+          <p class="note" style="margin:12px 0 0">Tip: Replace these examples with your priority skills for the event.</p>
+        </div></div>
+      </div>
+    </section>
+
+    <section id="impact">
+      <div class="wrap">
+        <div class="sectionhead">
+          <div>
+            <div class="eyebrow">Impact</div>
+            <h2>From vulnerability to opportunity</h2>
+            <p class="lead">
+              We support beneficiaries to start small enterprises, generate income, and participate fully in community life—strengthening dignity and independence.
+            </p>
+          </div>
+        </div>
+
+        <div class="twocol">
+          <div class="card"><div class="pad">
+            <h3 style="margin:0 0 8px">Expected outcomes</h3>
+            <ul class="list">
+              <li>Improved and diversified household livelihoods</li>
+              <li>Increased inclusion and self‑reliance of persons with disabilities</li>
+              <li>Stronger community-based support and protection systems</li>
+              <li>Enhanced use of data for advocacy and decision-making</li>
+            </ul>
+          </div></div>
+
+          <div class="card"><div class="pad">
+            <h3 style="margin:0 0 8px">Sustainability</h3>
+            <ul class="list">
+              <li>Beneficiary-owned and managed IGAs</li>
+              <li>Reinvestment of proceeds into programmes</li>
+              <li>Partnerships with NGOs, government & private sector</li>
+              <li>Community ownership and leadership</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sdgs" class="softline">
+      <div class="wrap">
+        <div class="sectionhead">
+          <div>
+            <div class="eyebrow">SDG alignment</div>
+            <h2>Contributing to the Sustainable Development Goals</h2>
+            <p class="lead">Our work supports inclusive learning, gender equality, decent work, reduced inequalities, and strong community institutions.</p>
+          </div>
+        </div>
+
+        <div class="sdggrid" aria-label="SDG alignment list">
+          <div class="sdg"><b>SDG 1</b><span>No Poverty</span></div>
+          <div class="sdg"><b>SDG 4</b><span>Quality Education</span></div>
+          <div class="sdg"><b>SDG 5</b><span>Gender Equality</span></div>
+          <div class="sdg"><b>SDG 8</b><span>Decent Work</span></div>
+          <div class="sdg"><b>SDG 10</b><span>Reduced Inequalities</span></div>
+          <div class="sdg"><b>SDG 16</b><span>Peace & Justice</span></div>
+          <div class="sdg"><b>SDG 17</b><span>Partnerships</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="partner">
+      <div class="wrap">
+        <div class="sectionhead">
+          <div>
+            <div class="eyebrow">Partner</div>
+            <h2>Let’s collaborate</h2>
+            <p class="lead">We welcome partnerships to expand inclusive opportunities for persons with disabilities and vulnerable communities in Western Kenya.</p>
+          </div>
+        </div>
+
+        <div class="partnergrid">
+          <div class="partner">NGOs & CSOs</div>
+          <div class="partner">Government agencies</div>
+          <div class="partner">Donors & foundations</div>
+          <div class="partner">Private sector partners</div>
+          <div class="partner">Community leaders</div>
+          <div class="partner">Volunteers & mentors</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="softline">
+      <div class="wrap">
+        <div class="sectionhead">
+          <div>
+            <div class="eyebrow">Contact</div>
+            <h2>Connect with MECID</h2>
+            <p class="lead">Replace the placeholders below with your real contact details before publishing.</p>
+          </div>
+        </div>
+
+        <div class="contactgrid">
+          <div class="card"><div class="pad">
+            <h3 style="margin:0 0 8px">Contact details</h3>
+            <p class="muted" style="margin:0"><b>Contact person:</b> Gladys Orlendo</p>
+            <p class="muted" style="margin:10px 0 0"><b>Based in:</b>Busia County, Western Kenya</p>
+            <p class="muted" style="margin:10px 0 0"><b>Email:</b> Mecid2026@gmail.com</p>
+            <p class="muted" style="margin:10px 0 0"><b>Phone:</b> +254722443650</p>
+          </div></div>
+
+          <div class="card"><div class="pad">
+            <h3 style="margin:0 0 8px">Message (optional)</h3>
+            <p class="note" style="margin-top:0">
+              This form is a demo (it won’t send emails yet). If you want a working form later,
+              you can connect it using a free service like Formspree.
+            </p>
+            <form onsubmit="event.preventDefault(); alert('Demo form only. Use email/phone above, or connect this form to a service like Formspree.');">
+              <div class="field">
+                <label for="n">Name</label>
+                <input id="n" required placeholder="Your name" />
+              </div>
+              <div class="field">
+                <label for="e">Email</label>
+                <input id="e" type="email" required placeholder="your@email.com" />
+              </div>
+              <div class="field">
+                <label for="m">Message</label>
+                <textarea id="m" required placeholder="How can we work together?"></textarea>
+              </div>
+              <button class="btn primary" type="submit" style="width:100%">Submit</button>
+            </form>
+          </div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footerrow">
+        <div class="small">© <span id="yr"></span> Mengo Educational Community and Inclusive Development (MECID). All rights reserved.</div>
+        <div class="small">
+          <a href="#about">About</a> · <a href="#partner">Partner</a> · <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    const menuBtn = document.getElementById('menuBtn');
+    const nav = document.getElementById('nav');
+    if(menuBtn){
+      menuBtn.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  </script>
+</body>
+</html>
